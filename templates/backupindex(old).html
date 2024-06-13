@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Chat Room</h2>
+        <button onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
+    </div>
+    <div class="main">
+        <div class="header">
+            <h2>Welcome, {{ username }}</h2>
+        </div>
+        <div id="chatbox" class="chatbox"></div>
+        <form id="messageForm" class="message-form">
+            <input type="text" id="message" placeholder="Type a message..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

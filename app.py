@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import json
 import os
 
@@ -6,6 +6,7 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 DATA_FILE = 'data/users.json'
+MESSAGES_FILE = 'data/messages.json'
 
 def load_users():
     if os.path.exists(DATA_FILE):
@@ -16,6 +17,16 @@ def load_users():
 def save_users(users):
     with open(DATA_FILE, 'w') as f:
         json.dump(users, f)
+
+def load_messages():
+    if os.path.exists(MESSAGES_FILE):
+        with open(MESSAGES_FILE, 'r') as f:
+            return json.load(f)
+    return []
+
+def save_messages(messages):
+    with open(MESSAGES_FILE, 'w') as f:
+        json.dump(messages, f)
 
 @app.route('/')
 def index():
@@ -58,10 +69,20 @@ def logout():
 def send_message():
     if 'username' in session:
         message = request.form['message']
-        # You can implement message saving here (e.g., save to a file or database)
-        print(f"{session['username']}: {message}")
+        messages = load_messages()
+        messages.append({'username': session['username'], 'message': message})
+        save_messages(messages)
         return '', 204
     return 'Unauthorized', 401
 
+@app.route('/get_messages')
+def get_messages():
+    if 'username' in session:
+        messages = load_messages()
+        return jsonify(messages)
+    return 'Unauthorized', 401
+
 if __name__ == '__main__':
+    if not os.path.exists('data'):
+        os.makedirs('data')
     app.run(debug=True)

@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+* {
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('/path/to/your/background-image.jpg'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #24252A;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+}
+
+.nav_links li {
+    padding: 0 20px;
+}
+
+.nav_links li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav_links li a:hover {
+    color: #0088a9;
+}
+
+.cta button {
+    background-color: #0088a9;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta button:hover {
+    background-color: #007a91;
+}
+
+.container {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #0088a9;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #007a91;
+}
+
+#chatbox {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: white;
+    height: 300px;
+    overflow-y: scroll;
+    border-radius: 5px;
+}
