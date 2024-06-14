@@ -3,3 +3,6 @@
 
 # database sensitivity
 data
+
+# python
+__pycache__
