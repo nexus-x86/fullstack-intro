@@ -1,0 +1,17 @@
+{% extends "modules/base.html" %}
+
+{% block title %}The better way to connect{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% endblock %}
+
+{% block body %}
+{% include "modules/navbar.html" %}
+
+<div class="hook">
+    <h1>HawkChat</h1>
+
+    <h3>The better way to connect</h3>
+</div>
+{% endblock %}

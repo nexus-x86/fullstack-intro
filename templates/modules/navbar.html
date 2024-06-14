@@ -1,0 +1,23 @@
+<header>
+    <link rel="stylesheet" href="{{ url_for('static', filename='common/navbar.css') }}">
+
+    <nav>
+    
+        <div class="branding">
+            <a href="{{ url_for('index') }}">HawkChat</a>
+        </div>
+
+        <div class="menu">
+            <a href="{{ url_for('about') }}" class="nav-item">About</a>
+            <a href="{{ url_for('tos') }}" class="nav-item">TOS</a>
+            <a href="{{ url_for('license') }}" class="nav-item">License</a>
+            <a href="{{ url_for('source') }}" target="_blank" class="nav-item">Source</a>
+        </div>
+
+        <div class="login">
+            <button onclick="window.open('{{ url_for('login') }}', '_self')">Login</button>
+        </div>
+
+    </nav>
+
+</header>
