@@ -1,3 +1,7 @@
+const submit = document.getElementById("submit");
+const messageInput = document.getElementById("message");
+const messages = document.getElementById("messages");
+
 /**
  * 
  * @param {Date} date 
@@ -9,27 +13,42 @@ function formatDate(date) {
         year: "numeric", 
         month: "long",
         day: "numeric",
-        minute: "numeric"
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true
     });
 }
 
-class AppMessageElement extends HTMLElement {
-    constructor() {
-        super();
+messageInput.addEventListener("keydown", function(event) {
+    if (event.key == "Enter") {
+        sendMessage();
+    }
+});
 
-        const date = new Date(Number(this.getAttribute("timestamp") || Date.now().toString()));
-        const dateString = formatDate(date);
+submit.addEventListener("click", function() {
+    sendMessage();
+});
 
-        this.innerHTML = `
-            <div class="message-field">
-                <span class="message-sender">${this.getAttribute("sender")}</span>
-                <span class="message-content">${this.textContent}</span>
-            </div>
-            <div>
-                <span class="message-timestamp">${dateString}</span>
-            </div>
-        `;
+function sendMessage() {
+    if (messageInput.value) {
+        const sender = "Test-Sender";
+        const dateString = formatDate(new Date(Date.now()));
+    
+        const message = document.createElement("div");
+        message.className = "app-message";
+        message.setAttribute("sender", "Session-Test");
+    
+        message.innerHTML = `<div class="message-field">
+                    <span class="message-sender">${sender}</span>
+                    <span class="message-content">${messageInput.value}</span>
+                </div>
+                <div>
+                    <span class="message-timestamp">${dateString}</span>
+                </div>`;
+    
+        messages.prepend(message);
+    
+        // clear msg
+        messageInput.value = "";
     }
 }
-
-window.customElements.define("app-message", AppMessageElement);

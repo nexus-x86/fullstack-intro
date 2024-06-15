@@ -83,3 +83,7 @@ input {
 a {
     color: #fc96ff;
 }
+
+.error {
+    color: #ff0000;
+}

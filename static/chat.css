@@ -19,24 +19,30 @@ main > div {
     background: #ffffff10;
     border-radius: 25px;
     padding: 30px;
+    overflow-y: scroll;
 }
 
-app-message {
+.app-message {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    opacity: 0;
+    transform: translateX(-40px);
+
+    animation: message-appear 0.5s ease-out forwards;
 }
 
-app-message .message-field {
+.app-message .message-field {
     display: flex;
     gap: 20px;
 }
 
-app-message .message-sender {
+.app-message .message-sender {
     font-weight: 700;
 }
 
-app-message .message-timestamp {
+.app-message .message-timestamp {
     color: #9f9f9f;
     font-size: 15px;
 }
@@ -53,4 +59,16 @@ input#message {
     font-size: 25px;
     padding-top: 9px;
     padding-bottom: 9px;
+}
+
+@keyframes message-appear {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+        }
+        
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
 }
