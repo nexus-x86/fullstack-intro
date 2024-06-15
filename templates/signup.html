@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h2>Sign Up</h2>
-        <form method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
-    </div>
-</body>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <title>HawkHacks APP</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <p> HAWK  HACKS</p>
+        <div class = "sign-up">
+            <h1>Sign up</h1>
+            <span>
+                <a href="{{url_for('switchLogin')}}"class="button">Already have an account?</a>
+            </span>
+            </p>
+            <form id = "signForm">
+                
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for="password">Password:</label><br>
+                <input type="text" id="password" name="password"><br>
+                <input type="submit" value="Make new account!"><br>
+                
+            </form>
+            <p id="message"></p>
+        </div>
+        <script src="{{ url_for('static', filename='signup.js') }}"></script>
+    </body>
 </html>

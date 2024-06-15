@@ -1,67 +1,67 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-import json
+from flask import Flask, request, jsonify, redirect, url_for, send_from_directory, render_template
 import os
+import json
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+# Needed for flash message functionality
+# os.random generates random strings of characters
+app.secret_key = os.urandom(12)
 
-DATA_FILE = 'data/users.json'
 
+# Example JSON entry for users.json
+# {
+#     "user1": "password1",
+#     "user2": "password2"
+# } 
 def load_users():
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, 'r') as f:
-            return json.load(f)
-    return {}
+    with open('users.json', 'r') as file:
+        users = json.load(file)
+    return users
 
-def save_users(users):
-    with open(DATA_FILE, 'w') as f:
-        json.dump(users, f)
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    users = load_users()
+
+    if username in users and users[username] == password:
+        return jsonify({'success': True, 'redirect':url_for('chat')})
+    else:
+        return jsonify({'success': False, 'message':'Incorrect username or password'})
+
+@app.route('/signup', methods=['POST'])
+def signup() :
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    
+    users = load_users()
+    if username in users:
+        return jsonify({'success': False, 'message':'Username already in use'})
+    else:
+        users[username] = password
+        with open('users.json', 'w') as file:
+            json.dump(users, file, indent=4)
+        return jsonify({'success': True, 'message': 'User registered successfully', 'redirect':"switchLogin"})
+
+@app.route('/switchSignup')
+def switchSignup():
+    return render_template('signup.html')
+
+@app.route('/switchLogin')
+def switchLogin():
+    return render_template('login.html')
+
+@app.route('/chat')
+def chat():
+    return render_template('chat.html')
+    #return send_from_directory('templates','chat.html')
 
 @app.route('/')
 def index():
-    if 'username' in session:
-        return render_template('index.html', username=session['username'])
-    return redirect(url_for('login'))
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        users = load_users()
-        if username in users and users[username] == password:
-            session['username'] = username
-            return redirect(url_for('index'))
-        return 'Invalid credentials'
     return render_template('login.html')
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        users = load_users()
-        if username in users:
-            return 'Username already exists'
-        users[username] = password
-        save_users(users)
-        session['username'] = username
-        return redirect(url_for('index'))
-    return render_template('signup.html')
-
-@app.route('/logout')
-def logout():
-    session.pop('username', None)
-    return redirect(url_for('login'))
-
-@app.route('/send_message', methods=['POST'])
-def send_message():
-    if 'username' in session:
-        message = request.form['message']
-        # You can implement message saving here (e.g., save to a file or database)
-        print(f"{session['username']}: {message}")
-        return '', 204
-    return 'Unauthorized', 401
+    #return send_from_directory('templates', 'login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
