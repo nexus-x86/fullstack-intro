@@ -2,6 +2,23 @@
 
 {% block title %}About the team{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+{% endblock %}
+
+
 {% block body %}
 {% include "modules/navbar.html" %}
+
+<h2>About Us</h2>
+
+<article>
+
+    <figure>
+        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgByBT5IiAT_a2x9pUVb4VMoOrlzHH7Jrzj-HB5jzHlR4lNLMS" alt="">
+        <caption>Peter MF Rong</caption>
+    </figure>
+
+</article>
+
 {% endblock %}

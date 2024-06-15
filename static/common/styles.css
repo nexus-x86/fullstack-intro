@@ -18,7 +18,7 @@ html, body {
 body {
     background: linear-gradient(69deg, rebeccapurple, #3d2278) no-repeat;
     color: white;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,9 +33,30 @@ h1 {
     font-weight: 700;
 }
 
+h2 {
+    font-size: 100px;
+    padding: 5px;
+    padding-left: 20px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 7px;
+    border: 2px solid #cccccc;
+    box-shadow: 0px 0px 10px 1px #000000;
+    width: 50vw;
+}
+
 h3 {
     font-size: 50px;
     font-weight: 500;
+}
+
+article {
+    width: 45vw;
+    margin: auto;
+    margin-top: 100px;
+    text-align: justify;
 }
 
 button {
@@ -46,4 +67,19 @@ button {
     background: #ffffff;
     color: #000000;
     cursor: pointer;
+    font-family: "Space Grotesk";
+}
+
+input {
+    background: #ffffff;
+    font-size: 30px;
+    border: none;
+    border-radius: 50px;
+    padding: 20px;
+    outline: none;
+    font-family: "Space Grotesk";
+}
+
+a {
+    color: #fc96ff;
 }

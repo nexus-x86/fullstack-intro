@@ -1,0 +1,31 @@
+{% extends "modules/base.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+{% endblock %}
+
+{% block body %}
+<main>
+
+    <div class="messages">
+        <app-message sender="Peter Rong">im gay gay gay gay</app-message>
+        <app-message sender="Peter Rong">im gay gay gay gay</app-message>
+        <app-message sender="Peter Rong">im gay gay gay gay</app-message>
+        <app-message sender="Peter Rong">im gay gay gay gay</app-message>
+        <app-message sender="Peter Rong">im gay gay gay gay</app-message>
+        <app-message sender="Peter Rong">im gay gay gay gay</app-message>
+        <app-message sender="Peter Rong">im gay gay gay gay</app-message>
+        <app-message sender="Peter Rong">im gay gay gay gay</app-message>
+    </div>
+
+    <div class="form">
+        <input placeholder="Send a message in HawkChat" id="message" type="text">
+        <button>Send</button>
+    </div>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

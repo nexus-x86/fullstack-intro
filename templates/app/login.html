@@ -1,0 +1,31 @@
+{% extends "modules/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="branding">
+    <a href="{{ url_for('index') }}">HawkChat</a>
+</div>
+
+<main>
+    <fieldset>
+    
+        <h3>Login</h3>
+    
+        <input id="username" placeholder="Username" spellcheck="false" type="text">
+        <input id="password" placeholder="Password" type="password">
+
+        <span>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a>!</span>
+
+        <button id="submit" style="font-size: 25px;">Login</button>
+    
+    </fieldset>
+</main>
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+{% endblock %}

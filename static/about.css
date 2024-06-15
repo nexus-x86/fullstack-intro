@@ -1,0 +1,10 @@
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+figure img {
+    border-radius: 100%;
+}

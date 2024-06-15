@@ -3,6 +3,7 @@ import flask
 # Create the app using flask as a framework
 app = flask.Flask(__name__)
 
+# Our static routes/pages
 # Index pgae (first page the user sees)
 @app.route("/", methods=["GET"])
 def index():
@@ -33,8 +34,19 @@ def source():
 # Login section
 @app.route("/login", methods=["GET"])
 def login():
-    return flask.render_template("login.html")
+    return flask.render_template("app/login.html")
 
+
+# Chat
+@app.route("/chat", methods=["GET"])
+def chat():
+    return flask.render_template("app/chat.html")
+
+
+# Signup sectoin
+@app.route("/signup", methods=["GET"])
+def signup():
+    return flask.render_template("app/signup.html")
 
 # Run the python app!
 if __name__ == "__main__":
